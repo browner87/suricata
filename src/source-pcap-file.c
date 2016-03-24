@@ -108,8 +108,6 @@ TmEcode DecodePcapFileThreadDeinit(ThreadVars *tv, void *data);
 
 void TmModuleReceivePcapFileRegister (void)
 {
-    memset(&pcap_g, 0x00, sizeof(pcap_g));
-
     tmm_modules[TMM_RECEIVEPCAPFILE].name = "ReceivePcapFile";
     tmm_modules[TMM_RECEIVEPCAPFILE].ThreadInit = ReceivePcapFileThreadInit;
     tmm_modules[TMM_RECEIVEPCAPFILE].Func = NULL;
@@ -136,6 +134,7 @@ void TmModuleDecodePcapFileRegister (void)
 
 void PcapFileGlobalInit()
 {
+    memset(&pcap_g, 0x00, sizeof(pcap_g));
     SC_ATOMIC_INIT(pcap_g.invalid_checksums);
 }
 
